@@ -7,7 +7,7 @@ draft: false
 Mình đã suy nghĩ xem nên khai bút bằng chủ đề gì . Nhưng thật là khó để chọn 1 chủ đề để nghiên cứu và viết.
 Nên có lẽ mình sẽ bắt đầu bằng công cụ mà mình dùng hằng ngày và mình luôn ưu tiên cài đặt đầu tiên.
 
-Hồi mình bắt đầu tìm hiểu về docker (mid 2018) thì docker thời điểm ở Việt Nam vẫn chưa nổi lắm. Nhưng hiện tại thì có thể 
+Hồi mình bắt đầu tìm hiểu về docker (mid 2018) thì docker thời điểm đó ở Việt Nam vẫn chưa nổi lắm. Nhưng hiện tại thì có thể 
 dễ thấy nó đã trở thành xu thế trong ngành.
 
 Dạo một vòng 1 trang tìm việc IT lớn mình thấy hầu hết các công ty hiện tại đều ưu tiên đưa docker vào desired skill
@@ -20,7 +20,7 @@ như một ưu tiên hàng đầu cho ứng viên của mình.
 
 Vậy tóm lại docker là gì ?
 
-> Docker là một ứng dụng giúp đơn giản hóa quá trình quẩn lý các tiến trình vào trong conntainer . Containers cho phép bạn
+> Docker là một ứng dụng giúp đơn giản hóa quá trình quản lý các tiến trình vào trong conntainer . Containers cho phép bạn
 > chạy ứng dụng trong một môi trường riêng biệt .
 > Nó như là 1 máy ảo nhưng:
 >  - Có tính di động cao
