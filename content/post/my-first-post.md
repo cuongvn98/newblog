@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2021-01-16T23:06:59+07:00
-draft: true
+draft: false
 ---
 
 Mình đã suy nghĩ xem nên khai bút bằng chủ đề gì . Nhưng thật là khó để chọn 1 chủ đề để nghiên cứu và viết.
