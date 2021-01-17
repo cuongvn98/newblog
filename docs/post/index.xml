@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Hirosume blog site</title>
-    <link>https://cuongvn98.github.io/newblog/post/</link>
+    <link>https://cuongvn98.github.io/post/</link>
     <description>Recent content in Blog on Hirosume blog site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vn-vi</language>
-    <lastBuildDate>Sat, 16 Jan 2021 23:06:59 +0700</lastBuildDate><atom:link href="https://cuongvn98.github.io/newblog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Jan 2021 23:06:59 +0700</lastBuildDate><atom:link href="https://cuongvn98.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker</title>
-      <link>https://cuongvn98.github.io/newblog/my-first-post/</link>
+      <link>https://cuongvn98.github.io/my-first-post/</link>
       <pubDate>Sat, 16 Jan 2021 23:06:59 +0700</pubDate>
       
-      <guid>https://cuongvn98.github.io/newblog/my-first-post/</guid>
+      <guid>https://cuongvn98.github.io/my-first-post/</guid>
       <description>Mình đã suy nghĩ xem nên khai bút bằng chủ đề gì . Nhưng thật là khó để chọn 1 chủ đề để nghiên cứu và viết. Nên có lẽ mình sẽ bắt đầu bằng công cụ mà mình dùng hằng ngày và mình luôn ưu tiên cài đặt đầu tiên.
 Hồi mình bắt đầu tìm hiểu về docker (mid 2018) thì docker thời điểm ở Việt Nam vẫn chưa nổi lắm.</description>
     </item>
