@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.80.0" />
-  <link rel="canonical" href="/newblog/post/">
+  <link rel="canonical" href="/newblog/my-first-post/">
 
   
 
@@ -35,7 +35,7 @@
 
   
   
-  <title>Blog | Hirosume blog site</title>
+  <title>Docker | Hirosume blog site</title>
 </head>
 
   <body>
@@ -238,36 +238,139 @@
       <div class="main-and-footer">
         <div>
           
-<main id="main">
-  <h1>Blog</h1>
-  
-  <input
-    id="search"
-    type="text"
-    placeholder="Search by title..."
-    aria-label="Search by title"
-  />
-  
-  <ul class="patterns-list" id="list">
+  <main id="main">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      Docker
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong>Publish date: </strong>Jan 16, 2021
+      
+        
+      
+    </div>
+
     
-    <li>
-      <h2>
-        <a href="/newblog/my-first-post/">
-          <svg
-            class="bookmark"
-            aria-hidden="true"
-            viewBox="0 0 40 50"
-            focusable="false"
-          >
-            <use xlink:href="#bookmark"></use>
-          </svg>
-          Docker
-        </a>
-      </h2>
-    </li>
     
-  </ul>
-</main>
+    
+      
+
+
+    
+
+    <p>Mình đã suy nghĩ xem nên khai bút bằng chủ đề gì . Nhưng thật là khó để chọn 1 chủ đề để nghiên cứu và viết.
+Nên có lẽ mình sẽ bắt đầu bằng công cụ mà mình dùng hằng ngày và mình luôn ưu tiên cài đặt đầu tiên.</p>
+<p>Hồi mình bắt đầu tìm hiểu về docker (mid 2018) thì docker thời điểm ở Việt Nam vẫn chưa nổi lắm. Nhưng hiện tại thì có thể
+dễ thấy nó đã trở thành xu thế trong ngành.</p>
+<p>Dạo một vòng 1 trang tìm việc IT lớn mình thấy hầu hết các công ty hiện tại đều ưu tiên đưa docker vào desired skill
+như một ưu tiên hàng đầu cho ứng viên của mình.</p>
+<p><img src="/images/my-first-post/job1.png" alt="demonstrative image 1"></p>
+<p><img src="/images/my-first-post/job2.png" alt="demonstrative image 2"></p>
+<p>Vậy tóm lại docker là gì ?</p>
+<blockquote>
+<p>Docker là một ứng dụng giúp đơn giản hóa quá trình quẩn lý các tiến trình vào trong conntainer . Containers cho phép bạn
+chạy ứng dụng trong một môi trường riêng biệt .
+Nó như là 1 máy ảo nhưng:</p>
+<ul>
+<li>Có tính di động cao</li>
+<li>Thân thiện với tài nguyên</li>
+<li>Phụ thuộc nhiều vào host OS hơn</li>
+</ul>
+</blockquote>
+<h3 id="tính-di-động">Tính di động</h3>
+<p>Với docker bạn có thể đóng gói hoàn toàn ứng dụng của bạn vào trong 1 image cùng với sự hỗ trợ của docker registry
+như là dockerhub v.v. Bạn có thể di chuyển vào chạy ứng dụng của bạn ở mọi nơi miễn là cài đặt docker và image của bạn hỗ trợ
+kiến trúc của host. Cũng như container trong thế giới thực vậy. Nhưng thay vì vận chuyển hàng hóa thì nó vận chuyển ứng dụng.</p>
+<h3 id="thân-thiện-với-tài-nguyên">Thân thiện với tài nguyên</h3>
+<p>Thông thường khi khởi tạo máy ảo với virtual box chúng ta phải xác định sẵn số lượng tài nguyên mà máy ảo sử dụng. Nhưng
+đôi khi là quá ít và quá nhiều. Có thể gây ra sự lãng phí không đáng có. Nhưng với docker thì các container chạy trực tiếp trên
+host machine như 1 tiến trình . Và khi một tiến trình thì cần bao nhiêu tài nguyên chúng sẽ được cấp phát bằng đó.</p>
+<h3 id="phụ-thuộc-nhiều-vào-host-os-hơn">Phụ thuộc nhiều vào host OS hơn</h3>
+<p>Phần này mình sẽ chỉ đính kèm 1 bức ảnh khá nổi tiếng . Vì mình nghĩ nói sâu hơn thì chúng ta nên dành ra 1 bài riêng để nói
+về chủ đề này.</p>
+<p><img src="/images/my-first-post/containers-vs-virtual-machines.jpg" alt="containers-vs-virtual-machines"></p>
+<h3 id="cài-đặt">Cài đặt</h3>
+<p>Phần cài đặt mình sẽ hướng dẫn các bạn cài đặt trên Ubuntu 20.04.</p>
+<p>Đầu tiên chúng ta mở terminal lên và bắt đầu cập nhập thông tin về các packages và upgrade hệ thống .
+Bước này là tùy chọn nhưng mình vẫn đưa vào để đảm bảo hệ thống luôn up-to-date</p>
+<pre><code class="language-bash">    sudo apt-get update
+    sudo apt-get dist-upgrade
+</code></pre>
+<p>Tiếp theo là cài đặt dependencies</p>
+<pre><code class="language-bash">sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+</code></pre>
+<p>Thêm GPG key và kiểm tra liệu key có hợp lệ:</p>
+<pre><code class="language-bash">  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo apt-key fingerprint 0EBFCD88
+  
+</code></pre>
+<p>Tiếp đó là cài đặt repository:</p>
+<pre><code class="language-bash"> sudo add-apt-repository \
+   &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable&quot;
+</code></pre>
+<p>Chúng ta cập nhật lại thông tin về repository vừa được thêm vào và bắt đầu cài đặt:</p>
+<pre><code class="language-bash"> sudo apt-get update
+ sudo apt-get install docker-ce docker-ce-cli containerd.io
+</code></pre>
+<p>Sau khi cài đặt thành công tiến hành kiểm tra docker đã hoạt động chưa bằng câu lệnh:</p>
+<pre><code class="language-bash">  sudo docker run hello-world
+
+</code></pre>
+<p>Nếu có được kết quả như hình thì quá trình cài đặt đã thành công!</p>
+<p><img src="/images/my-first-post/docker-helloworld.png" alt="hello-world"></p>
+<h3 id="bonus">Bonus</h3>
+<p>Rất bất tiện khi phải thêm sudo khi bắt đầu mỗi câu lệnh . Bạn có thể giải quyết bằng cách thêm user hiện tại vào docker group như sau:</p>
+<pre><code class="language-bash"> sudo usermod -aG docker &lt;your-user&gt;
+</code></pre>
+
+  </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "hirosume" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           
             <footer role="contentinfo">
