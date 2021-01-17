@@ -2,27 +2,4 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-  <url>
-    <loc>http://t%E1%BA%BFch.vn/</loc>
-    <lastmod>2021-01-16T23:06:59+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://t%E1%BA%BFch.vn/posts/my-first-post/</loc>
-    <lastmod>2021-01-16T23:06:59+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://t%E1%BA%BFch.vn/posts/</loc>
-    <lastmod>2021-01-16T23:06:59+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://t%E1%BA%BFch.vn/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://t%E1%BA%BFch.vn/tags/</loc>
-  </url>
-  
 </urlset>
