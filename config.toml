@@ -1,4 +1,5 @@
 baseURL = "http://tếch.vn/"
+publishDir = "docs"
 languageCode = "vn-vi"
 title = "Hirosume blog site"
 theme = "cupper-hugo-theme"
