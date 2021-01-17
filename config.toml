@@ -4,7 +4,7 @@ title = "Hirosume blog site"
 theme = "cupper-hugo-theme"
 disqusShortname = "hirosume"
 enableEmoji = true
-googleAnalytics = UA-116855793-1
+googleAnalytics = "UA-116855793-1"
 [taxonomies]
 tag = "tags"
 
