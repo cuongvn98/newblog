@@ -1,20 +1,122 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog on Hirosume blog site</title>
+    <title>Posts on Hirosume blog</title>
     <link>https://cuongvn98.github.io/post/</link>
-    <description>Recent content in Blog on Hirosume blog site</description>
+    <description>Recent content in Posts on Hirosume blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vn-vi</language>
-    <lastBuildDate>Sat, 16 Jan 2021 23:06:59 +0700</lastBuildDate><atom:link href="https://cuongvn98.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>©2019 Notepadium.</copyright>
+    <lastBuildDate>Sat, 16 Jan 2021 23:06:59 +0700</lastBuildDate>
+    
+        <atom:link href="https://cuongvn98.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
-      <title>Docker</title>
-      <link>https://cuongvn98.github.io/my-first-post/</link>
+      <title>Giới thiệu về Docker</title>
+      <link>https://cuongvn98.github.io/post/my-first-post/</link>
       <pubDate>Sat, 16 Jan 2021 23:06:59 +0700</pubDate>
       
-      <guid>https://cuongvn98.github.io/my-first-post/</guid>
-      <description>Mình đã suy nghĩ xem nên khai bút bằng chủ đề gì . Nhưng thật là khó để chọn 1 chủ đề để nghiên cứu và viết. Nên có lẽ mình sẽ bắt đầu bằng công cụ mà mình dùng hằng ngày và mình luôn ưu tiên cài đặt đầu tiên.
-Hồi mình bắt đầu tìm hiểu về docker (mid 2018) thì docker thời điểm đó ở Việt Nam vẫn chưa nổi lắm.</description>
+      <guid>https://cuongvn98.github.io/post/my-first-post/</guid>
+      <description>&lt;p&gt;Mình đã suy nghĩ xem nên khai bút bằng chủ đề gì . Nhưng thật là khó để chọn 1 chủ đề để nghiên cứu và viết.
+Nên có lẽ mình sẽ bắt đầu bằng công cụ mà mình dùng hằng ngày và mình luôn ưu tiên cài đặt đầu tiên.&lt;/p&gt;
+&lt;p&gt;Hồi mình bắt đầu tìm hiểu về docker (mid 2018) thì docker thời điểm đó ở Việt Nam vẫn chưa nổi lắm. Nhưng hiện tại thì có thể
+dễ thấy nó đã trở thành xu thế trong ngành.&lt;/p&gt;
+&lt;p&gt;Dạo một vòng 1 trang tìm việc IT lớn mình thấy hầu hết các công ty hiện tại đều ưu tiên đưa docker vào desired skill
+như một ưu tiên hàng đầu cho ứng viên của mình.&lt;/p&gt;
+&lt;p&gt;&lt;img  src=&#34;https://cuongvn98.github.io/images/my-first-post/job1.png&#34;
+        alt=&#34;demonstrative image 1&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img  src=&#34;https://cuongvn98.github.io/images/my-first-post/job2.png&#34;
+        alt=&#34;demonstrative image 2&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;Vậy tóm lại docker là gì ?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Docker là một ứng dụng giúp đơn giản hóa quá trình quản lý các tiến trình vào trong conntainer . Containers cho phép bạn
+chạy ứng dụng trong một môi trường riêng biệt .
+Nó như là 1 máy ảo nhưng:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Có tính di động cao&lt;/li&gt;
+&lt;li&gt;Thân thiện với tài nguyên&lt;/li&gt;
+&lt;li&gt;Phụ thuộc nhiều vào host OS hơn&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;tính-di-động&#34;&gt;Tính di động&lt;/h3&gt;
+&lt;p&gt;Với docker bạn có thể đóng gói hoàn toàn ứng dụng của bạn vào trong 1 image cùng với sự hỗ trợ của docker registry
+như là dockerhub v.v. Bạn có thể di chuyển vào chạy ứng dụng của bạn ở mọi nơi miễn là cài đặt docker và image của bạn hỗ trợ
+kiến trúc của host. Cũng như container trong thế giới thực vậy. Nhưng thay vì vận chuyển hàng hóa thì nó vận chuyển ứng dụng.&lt;/p&gt;
+&lt;h3 id=&#34;thân-thiện-với-tài-nguyên&#34;&gt;Thân thiện với tài nguyên&lt;/h3&gt;
+&lt;p&gt;Thông thường khi khởi tạo máy ảo với virtual box chúng ta phải xác định sẵn số lượng tài nguyên mà máy ảo sử dụng. Nhưng
+đôi khi là quá ít và quá nhiều. Có thể gây ra sự lãng phí không đáng có. Nhưng với docker thì các container chạy trực tiếp trên
+host machine như 1 tiến trình . Và khi một tiến trình thì cần bao nhiêu tài nguyên chúng sẽ được cấp phát bằng đó.&lt;/p&gt;
+&lt;h3 id=&#34;phụ-thuộc-nhiều-vào-host-os-hơn&#34;&gt;Phụ thuộc nhiều vào host OS hơn&lt;/h3&gt;
+&lt;p&gt;Phần này mình sẽ chỉ đính kèm 1 bức ảnh khá nổi tiếng . Vì mình nghĩ nói sâu hơn thì chúng ta nên dành ra 1 bài riêng để nói
+về chủ đề này.&lt;/p&gt;
+&lt;p&gt;&lt;img  src=&#34;https://cuongvn98.github.io/images/my-first-post/containers-vs-virtual-machines.jpg&#34;
+        alt=&#34;containers-vs-virtual-machines&#34;/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;cài-đặt&#34;&gt;Cài đặt&lt;/h3&gt;
+&lt;p&gt;Phần cài đặt mình sẽ hướng dẫn các bạn cài đặt trên Ubuntu 20.04.&lt;/p&gt;
+&lt;p&gt;Đầu tiên chúng ta mở terminal lên và bắt đầu cập nhập thông tin về các packages và upgrade hệ thống .
+Bước này là tùy chọn nhưng mình vẫn đưa vào để đảm bảo hệ thống luôn up-to-date&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;    sudo apt-get update
+    sudo apt-get dist-upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Tiếp theo là cài đặt dependencies&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get install &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    apt-transport-https &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    ca-certificates &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    curl &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    gnupg-agent &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    software-properties-common
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Thêm GPG key và kiểm tra liệu key có hợp lệ:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  curl -fsSL https://download.docker.com/linux/ubuntu/gpg &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sudo apt-key add -
+  sudo apt-key fingerprint 0EBFCD88
+  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Tiếp đó là cài đặt repository:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; sudo add-apt-repository &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;s2&#34;&gt;&amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;lsb_release -cs&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; \
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;   stable&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Chúng ta cập nhật lại thông tin về repository vừa được thêm vào và bắt đầu cài đặt:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; sudo apt-get update
+ sudo apt-get install docker-ce docker-ce-cli containerd.io
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Sau khi cài đặt thành công tiến hành kiểm tra docker đã hoạt động chưa bằng câu lệnh:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  sudo docker run hello-world
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Nếu có được kết quả như hình thì quá trình cài đặt đã thành công!&lt;/p&gt;
+&lt;p&gt;&lt;img  src=&#34;https://cuongvn98.github.io/images/my-first-post/docker-helloworld.png&#34;
+        alt=&#34;hello-world&#34;/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;bonus&#34;&gt;Bonus&lt;/h3&gt;
+&lt;p&gt;Rất bất tiện khi phải thêm sudo khi bắt đầu mỗi câu lệnh . Bạn có thể giải quyết bằng cách thêm user hiện tại vào docker group như sau:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; sudo usermod -aG docker &amp;lt;your-user&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cuongvn98.github.io/archives/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://cuongvn98.github.io/archives/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://cuongvn98.github.io/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://cuongvn98.github.io/about/</guid>
+      <description>&lt;p&gt;Written in Go, Hugo is an open source static site generator available under the &lt;a href=&#34;https://github.com/gohugoio/hugo/blob/master/LICENSE&#34;target=&#34;_blank&#34;&gt;Apache Licence 2.0.&lt;/a&gt; Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&lt;/p&gt;
+&lt;p&gt;Hugo makes use of a variety of open source projects including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/yuin/goldmark&#34;&gt;https://github.com/yuin/goldmark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/alecthomas/chroma&#34;&gt;https://github.com/alecthomas/chroma&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/muesli/smartcrop&#34;&gt;https://github.com/muesli/smartcrop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/cobra&#34;&gt;https://github.com/spf13/cobra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/viper&#34;&gt;https://github.com/spf13/viper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.&lt;/p&gt;
+&lt;p&gt;Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.&lt;/p&gt;
+&lt;p&gt;Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.&lt;/p&gt;
+&lt;p&gt;Learn more and contribute on &lt;a href=&#34;https://github.com/gohugoio&#34;target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

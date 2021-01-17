@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Giới thiệu về Docker&nbsp;&ndash;&nbsp;Hirosume blog</title><link rel="stylesheet" href="/css/core.min.fdd0c10c69278cc03d9be012aebfa3d67fab991836ab33c143c5c8c08ae542333a23b967a5169ad4fb896277685f2e13.css" integrity="sha384-/dDBDGknjMA9m&#43;ASrr&#43;j1n&#43;rmRg2qzPBQ8XIwIrlQjM6I7lnpRaa1PuJYndoXy4T"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Giới thiệu về Docker" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Hirosume blog</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Giới thiệu về Docker</h1><p class="article date">Saturday, January 16, 2021</p></section><article class="article markdown-body"><p>Mình đã suy nghĩ xem nên khai bút bằng chủ đề gì . Nhưng thật là khó để chọn 1 chủ đề để nghiên cứu và viết.
+Nên có lẽ mình sẽ bắt đầu bằng công cụ mà mình dùng hằng ngày và mình luôn ưu tiên cài đặt đầu tiên.</p>
+<p>Hồi mình bắt đầu tìm hiểu về docker (mid 2018) thì docker thời điểm đó ở Việt Nam vẫn chưa nổi lắm. Nhưng hiện tại thì có thể
+dễ thấy nó đã trở thành xu thế trong ngành.</p>
+<p>Dạo một vòng 1 trang tìm việc IT lớn mình thấy hầu hết các công ty hiện tại đều ưu tiên đưa docker vào desired skill
+như một ưu tiên hàng đầu cho ứng viên của mình.</p>
+<p><img  src="/images/my-first-post/job1.png"
+        alt="demonstrative image 1"/></p>
+<p><img  src="/images/my-first-post/job2.png"
+        alt="demonstrative image 2"/></p>
+<p>Vậy tóm lại docker là gì ?</p>
+<blockquote>
+<p>Docker là một ứng dụng giúp đơn giản hóa quá trình quản lý các tiến trình vào trong conntainer . Containers cho phép bạn
+chạy ứng dụng trong một môi trường riêng biệt .
+Nó như là 1 máy ảo nhưng:</p>
+<ul>
+<li>Có tính di động cao</li>
+<li>Thân thiện với tài nguyên</li>
+<li>Phụ thuộc nhiều vào host OS hơn</li>
+</ul>
+</blockquote>
+<h3 id="tính-di-động">Tính di động</h3>
+<p>Với docker bạn có thể đóng gói hoàn toàn ứng dụng của bạn vào trong 1 image cùng với sự hỗ trợ của docker registry
+như là dockerhub v.v. Bạn có thể di chuyển vào chạy ứng dụng của bạn ở mọi nơi miễn là cài đặt docker và image của bạn hỗ trợ
+kiến trúc của host. Cũng như container trong thế giới thực vậy. Nhưng thay vì vận chuyển hàng hóa thì nó vận chuyển ứng dụng.</p>
+<h3 id="thân-thiện-với-tài-nguyên">Thân thiện với tài nguyên</h3>
+<p>Thông thường khi khởi tạo máy ảo với virtual box chúng ta phải xác định sẵn số lượng tài nguyên mà máy ảo sử dụng. Nhưng
+đôi khi là quá ít và quá nhiều. Có thể gây ra sự lãng phí không đáng có. Nhưng với docker thì các container chạy trực tiếp trên
+host machine như 1 tiến trình . Và khi một tiến trình thì cần bao nhiêu tài nguyên chúng sẽ được cấp phát bằng đó.</p>
+<h3 id="phụ-thuộc-nhiều-vào-host-os-hơn">Phụ thuộc nhiều vào host OS hơn</h3>
+<p>Phần này mình sẽ chỉ đính kèm 1 bức ảnh khá nổi tiếng . Vì mình nghĩ nói sâu hơn thì chúng ta nên dành ra 1 bài riêng để nói
+về chủ đề này.</p>
+<p><img  src="/images/my-first-post/containers-vs-virtual-machines.jpg"
+        alt="containers-vs-virtual-machines"/></p>
+<h3 id="cài-đặt">Cài đặt</h3>
+<p>Phần cài đặt mình sẽ hướng dẫn các bạn cài đặt trên Ubuntu 20.04.</p>
+<p>Đầu tiên chúng ta mở terminal lên và bắt đầu cập nhập thông tin về các packages và upgrade hệ thống .
+Bước này là tùy chọn nhưng mình vẫn đưa vào để đảm bảo hệ thống luôn up-to-date</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">    sudo apt-get update
+    sudo apt-get dist-upgrade
+</code></pre></div><p>Tiếp theo là cài đặt dependencies</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install <span class="se">\
+</span><span class="se"></span>    apt-transport-https <span class="se">\
+</span><span class="se"></span>    ca-certificates <span class="se">\
+</span><span class="se"></span>    curl <span class="se">\
+</span><span class="se"></span>    gnupg-agent <span class="se">\
+</span><span class="se"></span>    software-properties-common
+</code></pre></div><p>Thêm GPG key và kiểm tra liệu key có hợp lệ:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
+  sudo apt-key fingerprint 0EBFCD88
+  
+</code></pre></div><p>Tiếp đó là cài đặt repository:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> sudo add-apt-repository <span class="se">\
+</span><span class="se"></span>   <span class="s2">&#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+</span><span class="s2">   </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> \
+</span><span class="s2">   stable&#34;</span>
+</code></pre></div><p>Chúng ta cập nhật lại thông tin về repository vừa được thêm vào và bắt đầu cài đặt:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> sudo apt-get update
+ sudo apt-get install docker-ce docker-ce-cli containerd.io
+</code></pre></div><p>Sau khi cài đặt thành công tiến hành kiểm tra docker đã hoạt động chưa bằng câu lệnh:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  sudo docker run hello-world
+
+</code></pre></div><p>Nếu có được kết quả như hình thì quá trình cài đặt đã thành công!</p>
+<p><img  src="/images/my-first-post/docker-helloworld.png"
+        alt="hello-world"/></p>
+<h3 id="bonus">Bonus</h3>
+<p>Rất bất tiện khi phải thêm sudo khi bắt đầu mỗi câu lệnh . Bạn có thể giải quyết bằng cách thêm user hiện tại vào docker group như sau:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> sudo usermod -aG docker &lt;your-user&gt;
+</code></pre></div></article><section class="article labels"><a class="category" href=/categories/devops/>devops</a><a class="tag" href=/tags/docker/>docker</a></section>
+</div>
+<div class="article bottom"></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2019 Notepadium.</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p></div></section>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-116855793-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</body>
+
+</html>
