@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Hirosume blog site</title>
-    <link>http://t%E1%BA%BFch.vn/post/</link>
+    <link>https://cuongvn98.github.io/newblog/post/</link>
     <description>Recent content in Blog on Hirosume blog site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>vn-vi</language><atom:link href="http://t%E1%BA%BFch.vn/post/index.xml" rel="self" type="application/rss+xml" />
+    <language>vn-vi</language><atom:link href="https://cuongvn98.github.io/newblog/post/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
