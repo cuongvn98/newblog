@@ -38,19 +38,21 @@ Nó như là 1 máy ảo nhưng:&lt;/p&gt;
 &lt;li&gt;Phụ thuộc nhiều vào host OS hơn&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;tính-di-động&#34;&gt;Tính di động&lt;/h3&gt;
-&lt;p&gt;Với docker bạn có thể đóng gói hoàn toàn ứng dụng của bạn vào trong 1 image cùng với sự hỗ trợ của docker registry
-như là dockerhub v.v. Bạn có thể di chuyển vào chạy ứng dụng của bạn ở mọi nơi miễn là cài đặt docker và image của bạn hỗ trợ
-kiến trúc của host. Cũng như container trong thế giới thực vậy. Nhưng thay vì vận chuyển hàng hóa thì nó vận chuyển ứng dụng.&lt;/p&gt;
-&lt;h3 id=&#34;thân-thiện-với-tài-nguyên&#34;&gt;Thân thiện với tài nguyên&lt;/h3&gt;
-&lt;p&gt;Thông thường khi khởi tạo máy ảo với virtual box chúng ta phải xác định sẵn số lượng tài nguyên mà máy ảo sử dụng. Nhưng
-đôi khi là quá ít và quá nhiều. Có thể gây ra sự lãng phí không đáng có. Nhưng với docker thì các container chạy trực tiếp trên
-host machine như 1 tiến trình . Và khi một tiến trình thì cần bao nhiêu tài nguyên chúng sẽ được cấp phát bằng đó.&lt;/p&gt;
-&lt;h3 id=&#34;phụ-thuộc-nhiều-vào-host-os-hơn&#34;&gt;Phụ thuộc nhiều vào host OS hơn&lt;/h3&gt;
-&lt;p&gt;Phần này mình sẽ chỉ đính kèm 1 bức ảnh khá nổi tiếng . Vì mình nghĩ nói sâu hơn thì chúng ta nên dành ra 1 bài riêng để nói
-về chủ đề này.&lt;/p&gt;
-&lt;p&gt;&lt;img  src=&#34;https://cuongvn98.github.io/images/my-first-post/containers-vs-virtual-machines.jpg&#34;
-        alt=&#34;containers-vs-virtual-machines&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;Ngoài ra docker còn có những ưu điểm chính như sau :&lt;/p&gt;
+&lt;h4 id=&#34;lightweight-resource-utilization&#34;&gt;Lightweight resource utilization:&lt;/h4&gt;
+&lt;p&gt;Thay vì phải ảo hoá toàn bộ hệ điều hành , containers bị cô lập ở tầng process và xử dụng host kernel.&lt;/p&gt;
+&lt;h4 id=&#34;portability&#34;&gt;Portability:&lt;/h4&gt;
+&lt;p&gt;Toàn bộ dependencies được đóng goí trong container , cho phép nó chạy trên bất kì host nào&lt;/p&gt;
+&lt;h4 id=&#34;predictability&#34;&gt;Predictability:&lt;/h4&gt;
+&lt;p&gt;Host hoàn toàn không cần quan tâm về những gì đang chạy bên trong container và container cũng không quan tâm
+về nó đang được chạy trên host nào .&lt;/p&gt;
+&lt;p&gt;Không gì là hoàn hảo docker cũng vậy theo mình nó có vài nhược điểm như sau :&lt;/p&gt;
+&lt;h4 id=&#34;platform-dependent&#34;&gt;Platform-dependent&lt;/h4&gt;
+&lt;p&gt;Mặc dù được quảng cáo như hỗ trợ cả Windows, Mac OS X và cả Linux. Nhưng thật sự nó vẫn sử dụng máy ảo khi hoạt
+động trên các nền tảng khác linux.&lt;/p&gt;
+&lt;h4 id=&#34;persistent-data&#34;&gt;Persistent data&lt;/h4&gt;
+&lt;p&gt;Mặc định toàn bộ data trong container sẽ bị xoá toàn bộ khi container bị xoá đi. Trừ khi bạn lưu nó vào đâu đó trước.
+Cách đó là sử dụng Docker Data Volumes.&lt;/p&gt;
 &lt;h3 id=&#34;cài-đặt&#34;&gt;Cài đặt&lt;/h3&gt;
 &lt;p&gt;Phần cài đặt mình sẽ hướng dẫn các bạn cài đặt trên Ubuntu 20.04.&lt;/p&gt;
 &lt;p&gt;Đầu tiên chúng ta mở terminal lên và bắt đầu cập nhập thông tin về các packages và upgrade hệ thống .
@@ -83,7 +85,7 @@ Bước này là tùy chọn nhưng mình vẫn đưa vào để đảm bảo h�
 &lt;p&gt;&lt;img  src=&#34;https://cuongvn98.github.io/images/my-first-post/docker-helloworld.png&#34;
         alt=&#34;hello-world&#34;/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;bonus&#34;&gt;Bonus&lt;/h3&gt;
-&lt;p&gt;Rất bất tiện khi phải thêm sudo khi bắt đầu mỗi câu lệnh . Bạn có thể giải quyết bằng cách thêm user hiện tại vào docker group như sau:&lt;/p&gt;
+&lt;p&gt;Rất bất tiện khi phải thêm sudo khi bắt đầu mỗi câu lệnh .Bạn có thể giải quyết bằng cách thêm user hiện tại vào docker group như sau:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; sudo usermod -aG docker &amp;lt;your-user&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>

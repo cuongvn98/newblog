@@ -26,19 +26,21 @@ Nó như là 1 máy ảo nhưng:</p>
 <li>Phụ thuộc nhiều vào host OS hơn</li>
 </ul>
 </blockquote>
-<h3 id="tính-di-động">Tính di động</h3>
-<p>Với docker bạn có thể đóng gói hoàn toàn ứng dụng của bạn vào trong 1 image cùng với sự hỗ trợ của docker registry
-như là dockerhub v.v. Bạn có thể di chuyển vào chạy ứng dụng của bạn ở mọi nơi miễn là cài đặt docker và image của bạn hỗ trợ
-kiến trúc của host. Cũng như container trong thế giới thực vậy. Nhưng thay vì vận chuyển hàng hóa thì nó vận chuyển ứng dụng.</p>
-<h3 id="thân-thiện-với-tài-nguyên">Thân thiện với tài nguyên</h3>
-<p>Thông thường khi khởi tạo máy ảo với virtual box chúng ta phải xác định sẵn số lượng tài nguyên mà máy ảo sử dụng. Nhưng
-đôi khi là quá ít và quá nhiều. Có thể gây ra sự lãng phí không đáng có. Nhưng với docker thì các container chạy trực tiếp trên
-host machine như 1 tiến trình . Và khi một tiến trình thì cần bao nhiêu tài nguyên chúng sẽ được cấp phát bằng đó.</p>
-<h3 id="phụ-thuộc-nhiều-vào-host-os-hơn">Phụ thuộc nhiều vào host OS hơn</h3>
-<p>Phần này mình sẽ chỉ đính kèm 1 bức ảnh khá nổi tiếng . Vì mình nghĩ nói sâu hơn thì chúng ta nên dành ra 1 bài riêng để nói
-về chủ đề này.</p>
-<p><img  src="/images/my-first-post/containers-vs-virtual-machines.jpg"
-        alt="containers-vs-virtual-machines"/></p>
+<p>Ngoài ra docker còn có những ưu điểm chính như sau :</p>
+<h4 id="lightweight-resource-utilization">Lightweight resource utilization:</h4>
+<p>Thay vì phải ảo hoá toàn bộ hệ điều hành , containers bị cô lập ở tầng process và xử dụng host kernel.</p>
+<h4 id="portability">Portability:</h4>
+<p>Toàn bộ dependencies được đóng goí trong container , cho phép nó chạy trên bất kì host nào</p>
+<h4 id="predictability">Predictability:</h4>
+<p>Host hoàn toàn không cần quan tâm về những gì đang chạy bên trong container và container cũng không quan tâm
+về nó đang được chạy trên host nào .</p>
+<p>Không gì là hoàn hảo docker cũng vậy theo mình nó có vài nhược điểm như sau :</p>
+<h4 id="platform-dependent">Platform-dependent</h4>
+<p>Mặc dù được quảng cáo như hỗ trợ cả Windows, Mac OS X và cả Linux. Nhưng thật sự nó vẫn sử dụng máy ảo khi hoạt
+động trên các nền tảng khác linux.</p>
+<h4 id="persistent-data">Persistent data</h4>
+<p>Mặc định toàn bộ data trong container sẽ bị xoá toàn bộ khi container bị xoá đi. Trừ khi bạn lưu nó vào đâu đó trước.
+Cách đó là sử dụng Docker Data Volumes.</p>
 <h3 id="cài-đặt">Cài đặt</h3>
 <p>Phần cài đặt mình sẽ hướng dẫn các bạn cài đặt trên Ubuntu 20.04.</p>
 <p>Đầu tiên chúng ta mở terminal lên và bắt đầu cập nhập thông tin về các packages và upgrade hệ thống .
@@ -71,7 +73,7 @@ Bước này là tùy chọn nhưng mình vẫn đưa vào để đảm bảo h�
 <p><img  src="/images/my-first-post/docker-helloworld.png"
         alt="hello-world"/></p>
 <h3 id="bonus">Bonus</h3>
-<p>Rất bất tiện khi phải thêm sudo khi bắt đầu mỗi câu lệnh . Bạn có thể giải quyết bằng cách thêm user hiện tại vào docker group như sau:</p>
+<p>Rất bất tiện khi phải thêm sudo khi bắt đầu mỗi câu lệnh .Bạn có thể giải quyết bằng cách thêm user hiện tại vào docker group như sau:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> sudo usermod -aG docker &lt;your-user&gt;
 </code></pre></div></article><section class="article labels"><a class="category" href=/categories/devops/>devops</a><a class="tag" href=/tags/docker/>docker</a></section>
 </div>
