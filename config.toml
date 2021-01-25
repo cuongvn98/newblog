@@ -1,100 +1,64 @@
 baseURL = "https://cuongvn98.github.io/"
 publishDir = "docs"
 languageCode = "vn-vi"
-title = "Hirosume blog site"
-theme = "cupper-hugo-theme"
+title = "Hirosume blog"
 disqusShortname = "hirosume"
+copyright = "©2019 Notepadium."
 enableEmoji = true
 googleAnalytics = "UA-116855793-1"
-[taxonomies]
-tag = "tags"
+theme = "hugo-notepadium"
 
-[permalinks]
-post = "/:filename/"
+# Enable Disqus
+#disqusShortname = "XXX"
 
-[imaging]
-quality = 99.0
+# Google Analytics
+#googleAnalytics = "UA-123-45"
+
+[markup.highlight]
+codeFences = true
+noClasses = false
+
+[markup.goldmark.renderer]
+unsafe = true  # enable raw HTML in Markdown
 
 [params]
-description = "Mình là 1 fullstack developer trẻ , thích golang và là 1 vim user ngoài ra còn thích đọc manga"
-homeMetaContent = ""
-footer = "Made with [Hugo](https://gohugo.io/). Themed by [Cupper](https://github.com/zwbetz-gh/cupper-hugo-theme)."
-dateFormat = "Jan 2, 2006"
-codePenUser = "vungoccuong"
-katex = true
-hideHeaderLinks = false
-search = true
-showThemeSwitcher = true
-moveFooterToHeader = false
-customCss = [
+style = "auto"  # default: auto. light: light theme, dark: dark theme, auto: based on system.
+dateFormat = "Monday, January 2, 2006"  # if unset, default is "2006-01-02"
+logo = ""  # if you have a logo png
+#slogan = "100% JavaScript-free"
+license = ""  # CC License
+fullRss = false # Puts entire HTML post into rss 'description' tag. If unset, default is false.
 
-]
-customJs = [
+[params.comments]
+enable = false  # En/Disable comments globally, default: false. You can always enable comments on per page.
 
-]
+[params.math]
+enable = false  # optional: true, false. Enable globally, default: false. You can always enable math on per page.
+use = "katex"  # option: "katex", "mathjax". default: "katex"
+
+[params.syntax]
+use = "none"  # builtin: "prismjs", "hljs". "none" means Chroma
+theme = "xcode"
+darkTheme = "xcode-dark"  # apply this theme in dark mode
+
+[params.share]
+enable = false
+addThisId = ""
+inlineToolId = ""
+
+[params.nav]
+showCategories = true       # /categories/
+showTags = true             # /tags/
+
+# custom navigation items
+
+#[[params.nav.custom]]
+#title = "About"
+#url = "/about"
 
 
-[menu]
-
-  [[menu.nav]]
-  name = "Home"
-  url = "/"
-  weight = 1.0
-
-  [[menu.nav]]
-  name = "Blog"
-  url = "/post/"
-  weight = 2.0
-
-  [[menu.nav]]
-  name = "Tags"
-  url = "/tags/"
-  weight = 3.0
-
-  [[menu.nav]]
-  name = "About"
-  url = "/about/"
-  weight = 4.0
-
-  [[menu.nav]]
-  name = "RSS"
-  url = "/index.xml"
-  weight = 5.0
-
-[markup]
-defaultMarkdownHandler = "goldmark"
-
-  [markup.goldmark]
-
-    [markup.goldmark.extensions]
-    definitionList = true
-    footnote = true
-    linkify = true
-    strikethrough = true
-    table = true
-    taskList = true
-    typographer = true
-
-    [markup.goldmark.parser]
-    attribute = true
-    autoHeadingID = true
-
-    [markup.goldmark.renderer]
-    hardWraps = false
-    unsafe = true
-    xHTML = false
-
-  [markup.highlight]
-  codeFences = false
-  hl_Lines = ""
-  lineNoStart = 1.0
-  lineNos = false
-  lineNumbersInTable = true
-  noClasses = true
-  style = "monokai"
-  tabWidth = 4.0
-
-  [markup.tableOfContents]
-  endLevel = 6.0
-  startLevel = 2.0
-
+# for chinese
+[params.beian]
+icp = ""     # example: 粤ICP备20056596号-1
+gongan = ""  # example: 粤公网安备 44030502005645号
+code = ""    # example: 44030502005645

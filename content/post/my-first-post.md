@@ -2,6 +2,8 @@
 title: "Giới thiệu về Docker"
 date: 2021-01-16T23:06:59+07:00
 draft: false
+tags: ["docker"]
+categories: ["devops"]
 ---
 
 Mình đã suy nghĩ xem nên khai bút bằng chủ đề gì . Nhưng thật là khó để chọn 1 chủ đề để nghiên cứu và viết.
@@ -27,21 +29,23 @@ Vậy tóm lại docker là gì ?
 >  - Thân thiện với tài nguyên
 >  - Phụ thuộc nhiều vào host OS hơn
 
-### Tính di động
-Với docker bạn có thể đóng gói hoàn toàn ứng dụng của bạn vào trong 1 image cùng với sự hỗ trợ của docker registry 
-như là dockerhub v.v. Bạn có thể di chuyển vào chạy ứng dụng của bạn ở mọi nơi miễn là cài đặt docker và image của bạn hỗ trợ 
-kiến trúc của host. Cũng như container trong thế giới thực vậy. Nhưng thay vì vận chuyển hàng hóa thì nó vận chuyển ứng dụng.
+Ngoài ra docker còn có những ưu điểm chính như sau : 
 
-### Thân thiện với tài nguyên
-Thông thường khi khởi tạo máy ảo với virtual box chúng ta phải xác định sẵn số lượng tài nguyên mà máy ảo sử dụng. Nhưng
-đôi khi là quá ít và quá nhiều. Có thể gây ra sự lãng phí không đáng có. Nhưng với docker thì các container chạy trực tiếp trên 
-host machine như 1 tiến trình . Và khi một tiến trình thì cần bao nhiêu tài nguyên chúng sẽ được cấp phát bằng đó.
+#### Lightweight resource utilization:
+Thay vì phải ảo hoá toàn bộ hệ điều hành , containers bị cô lập ở tầng process và xử dụng host kernel.
+#### Portability:
+Toàn bộ dependencies được đóng goí trong container , cho phép nó chạy trên bất kì host nào
+#### Predictability:
+Host hoàn toàn không cần quan tâm về những gì đang chạy bên trong container và container cũng không quan tâm
+về nó đang được chạy trên host nào . 
 
-### Phụ thuộc nhiều vào host OS hơn 
-Phần này mình sẽ chỉ đính kèm 1 bức ảnh khá nổi tiếng . Vì mình nghĩ nói sâu hơn thì chúng ta nên dành ra 1 bài riêng để nói 
-về chủ đề này. 
-
-![containers-vs-virtual-machines](/images/my-first-post/containers-vs-virtual-machines.jpg)
+Không gì là hoàn hảo docker cũng vậy theo mình nó có vài nhược điểm như sau :
+#### Platform-dependent
+Mặc dù được quảng cáo như hỗ trợ cả Windows, Mac OS X và cả Linux. Nhưng thật sự nó vẫn sử dụng máy ảo khi hoạt 
+động trên các nền tảng khác linux.
+#### Persistent data
+Mặc định toàn bộ data trong container sẽ bị xoá toàn bộ khi container bị xoá đi. Trừ khi bạn lưu nó vào đâu đó trước.
+Cách đó là sử dụng Docker Data Volumes.
 
 ### Cài đặt
 Phần cài đặt mình sẽ hướng dẫn các bạn cài đặt trên Ubuntu 20.04. 
@@ -100,7 +104,7 @@ Nếu có được kết quả như hình thì quá trình cài đặt đã thà
 
 
 ### Bonus
-Rất bất tiện khi phải thêm sudo khi bắt đầu mỗi câu lệnh . Bạn có thể giải quyết bằng cách thêm user hiện tại vào docker group như sau:
+Rất bất tiện khi phải thêm sudo khi bắt đầu mỗi câu lệnh .Bạn có thể giải quyết bằng cách thêm user hiện tại vào docker group như sau:
 
 ```bash
  sudo usermod -aG docker <your-user>
