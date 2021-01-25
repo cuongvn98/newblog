@@ -6,10 +6,119 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>vn-vi</language>
     <copyright>©2019 Notepadium.</copyright>
-    <lastBuildDate>Sat, 16 Jan 2021 23:06:59 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 25 Jan 2021 20:45:40 +0700</lastBuildDate>
     
         <atom:link href="https://cuongvn98.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dockerize node.js app</title>
+      <link>https://cuongvn98.github.io/post/dockerize_node_app/</link>
+      <pubDate>Mon, 25 Jan 2021 20:45:40 +0700</pubDate>
+      
+      <guid>https://cuongvn98.github.io/post/dockerize_node_app/</guid>
+      <description>&lt;p&gt;Ở bài trước mình đã bàn qua về docker và cài đặt docker trên ubuntu . Suốt tuần qua mình cũng đắn đo xem nên viết gì ở tuần này
+. Thú thật cũng có vài ý tưởng, cũng muốn viết 1 bài chuyên sâu. Nhưng suy nghĩ kĩ thì mình sẽ tiếp tục với 1 bài cơ bản về docker trước khi
+viết gì đó cao siêu hơn. Tiếp tục với docker cơ bản thì hôm nay mình sẽ hướng dẫn đóng gói 1 image cho node.js application.&lt;/p&gt;
+&lt;h3 id=&#34;chuẩn-bị-&#34;&gt;Chuẩn bị :&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Docker.&lt;/li&gt;
+&lt;li&gt;Node.js&lt;/li&gt;
+&lt;li&gt;IDE hoặc text editor tuỳ thích .&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nếu các bạn sử dụng linux , mac thì mình khuyên các bạn nên dùng &lt;a href=&#34;https://github.com/nvm-sh/nvm&#34;target=&#34;_blank&#34;&gt;nvm&lt;/a&gt; để dễ dàng quản lý node version.&lt;/p&gt;
+&lt;h3 id=&#34;nodejs-app&#34;&gt;Node.js app&lt;/h3&gt;
+&lt;p&gt;Về application thì chúng ta sẽ viết một web service đơn giản trong đó nó sẽ trả về thông tin của ip của client đang gửi request.&lt;/p&gt;
+&lt;p&gt;Chúng ta sẽ bắt đầu như sau :&lt;/p&gt;
+&lt;p&gt;Đầu tiên chúng ta khởi tạo project với chuỗi lệnh:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mkdir dockerize_node_app &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$_&lt;/span&gt;
+npm init -y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Và cài đặt express.js như là dependency :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;npm i express
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Sau khi chuẩn bị khởi tạo xong project và cài đặt deps cần thiết thì chúng ta tạo file index.js với nội dung :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-node.js&#34; data-lang=&#34;node.js&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;express&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;express&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;headers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;x-forwarded-for&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;socket&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;remoteAddress&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ip&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;listen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;8080&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;server is listening on :8080&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Như bạn có thể thấy ứng dụng của chúng ta đơn thuần chỉ khởi tạo 1 web service bất cứ request nào tới đường dẫn / đều
+sẽ trả về ip của client . Không có gì phức tạp cả vậy nên sau khi dùng lệnh&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;node index
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Và mở browser với địa chỉ localhost:8080 thì ta sẽ nhận được kết quả như sau :&lt;/p&gt;
+&lt;p&gt;&lt;img  src=&#34;https://cuongvn98.github.io/images/dockerize_node_app/run_node_app.png&#34;
+        alt=&#34;run node app&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;Nhưng ip trả về cũng có thể là 127.0.0.1 (ipv4) .&lt;/p&gt;
+&lt;p&gt;Vậy tiếp theo chúng ta sẽ đến với phần chính. Dockerize nó.&lt;/p&gt;
+&lt;h3 id=&#34;dockerize&#34;&gt;Dockerize&lt;/h3&gt;
+&lt;p&gt;Để bắt đầu chúng ta sẽ tạo 1 file .dockerignore với nội dung như sau:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;node_modules&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Nhằm mục đích rằng khi build docker image thì docker daemon sẽ bỏ qua thư mục node_modules thay vì copy nó vào như là build context.
+Tiếp đó ta sẽ tạo file Dockerfile với nội dung như sau:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; node:15.6.0-alpine3.10&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WORKDIR&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; /usr/app&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COPY&lt;/span&gt; package-*.json .&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; npm i&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COPY&lt;/span&gt; . .&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;EXPOSE&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; 8080&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CMD&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;node&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;index&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Mình sẽ giải thích từng dòng như sau :&lt;/p&gt;
+&lt;p&gt;Đầu tiên khi khởi tạo 1 image nào thì chúng ta cũng chọn image cơ bản mà ứng dụng chúng ta build từ .
+Chúng ta hoàn toàn có thể build từ image trống như là scratch. Nhưng trong nội dung bài này chúng ta sẽ dùng 1 image node.js được
+build sẵn đó là node:15.6.0-alpine3.10&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; node:15.6.0-alpine3.10&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Sau đó chúng ta sẽ chỉ định thư mục mà chúng ta sẽ làm việc với lệnh&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span class=&#34;k&#34;&gt;WORKDIR&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; /usr/app&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Trong image của chúng ta nó sẽ là nơi lưu trữ code. Sau đó chúng ta sẽ copy 2 file package.json và package-lock.json
+vào và tiến hành cài dependencies .&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span class=&#34;k&#34;&gt;COPY&lt;/span&gt; package-*.json .&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; npm i&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Sau khi cài xong thì ta sẽ bắt đầu copy toàn bộ dự án vào trong image với lệnh COPY&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span class=&#34;k&#34;&gt;COPY&lt;/span&gt; . .&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Nhưng đến đây chắc các bạn sẽ thắc mắc ủa sao không copy ngay toàn bộ dự án vào ngay từ đầu rồi install deps mà lại phải
+copy 2 file package.json và package-lock.json vào trước làm chi . Lí do để giải thích cho việc này
+là khi build docker daemon sẽ sử dụng cache để tối ưu thời gian build các layer không bị thay đổi giữa các lần build. Từ
+đó giúp tối ưu thời gian build ứng dụng. Như trong service của chúng ta thì việc cập nhật deps xảy ra không thương xuyên thay vào đó là
+source code .&lt;/p&gt;
+&lt;p&gt;Và lệnh EXPOSE 8080 chỉ cho docker biết rằng ứng dụng của chúng ta sử dụng port 8080 .&lt;/p&gt;
+&lt;p&gt;Lưu ý rằng lệnh này không hỗ trợ việc public port
+nào . Chức năng của nó như là tài liệu của người build image cho người run image rằng port nào được dự định sử dụng .&lt;/p&gt;
+&lt;p&gt;Và cuôí cùng là&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span class=&#34;k&#34;&gt;CMD&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;node&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;index&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Lệnh này được sử dụng như là chỉ ra lệnh nào sẽ được sử dụng để run  ứng dụng . Lưu ý mỗi image chỉ có duy nhất 1
+lệnh CMD . Như trong ứng dụng của chúng ta dùng  CMD [&amp;ldquo;node&amp;rdquo;, &amp;ldquo;index&amp;rdquo;] để run vậy .&lt;/p&gt;
+&lt;p&gt;Sau khi có được file Dockerfile chúng ta sẽ build image từ file này như sau :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker build -t dockerize_node_app .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ở lần đầu run thì sẽ mất chút thời gian để pull image node.js về nhưng các lần sau sẽ nhanh hơn . Sau khi build thành công ta nhận được kết quả như sau :&lt;/p&gt;
+&lt;p&gt;&lt;img  src=&#34;https://cuongvn98.github.io/images/dockerize_node_app/build_image.png&#34;
+        alt=&#34;build_image&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;Tiếp đó chúng ta thử tạo container từ image vưà tạo để xem chúng ta đã thành công hay chưa :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run -p 8080:8080 dockerize_node_app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Sau đó thử lại với trình duyệt ta nhận được kết quả sau :&lt;/p&gt;
+&lt;p&gt;&lt;img  src=&#34;https://cuongvn98.github.io/images/dockerize_node_app/run_node_app_from_image.png&#34;
+        alt=&#34;build_image&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;Giải thích về lệnh trên như sau :
+với docker run &amp;lt;image_name&amp;gt; ta sẽ tạo 1 container từ 1 image có sẵn và khởi chạy nó . Kèm theo đó vì service của chúng
+ta lắng nghe ở port 8080 nên ta sẽ dùng -p 8080:8080 để bind port 8080 từ host tới port 8080 trong container được tạo .&lt;/p&gt;
+&lt;h3 id=&#34;kết-luận&#34;&gt;Kết luận&lt;/h3&gt;
+&lt;p&gt;Thế là chúng ta đã build và đóng gói thành công 1 node.js application vào docker image. Vẫn còn rất nhiều phần để giúp chúng
+ta deploy hoàn chỉnh 1 ứng dụng. Nhưng mình mong bài viết này sẽ giúp các bạn tiến 1 bước trong việc học hỏi và sử dụng docker hơn .&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Giới thiệu về Docker</title>
